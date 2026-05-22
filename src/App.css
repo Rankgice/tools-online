@@ -1,0 +1,391 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', Roboto, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ 工具箱壳: 左侧栏 + 右侧内容 ============ */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  flex: 0 0 240px;
+  background: #fbfbfd;
+  border-right: 1px solid #e5e5ea;
+  padding: 24px 16px;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.brand {
+  margin: 0 8px 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.tool-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tool-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  font: inherit;
+  color: #424245;
+}
+
+.tool-item:hover {
+  background: #f0f0f3;
+}
+
+.tool-item.active {
+  background: #0071e3;
+  color: white;
+}
+
+.tool-item.active .tool-item-desc {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.tool-item-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tool-item-desc {
+  font-size: 11px;
+  color: #6e6e73;
+  margin-top: 2px;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 40px;
+  overflow-x: auto;
+}
+
+.empty {
+  color: #6e6e73;
+}
+
+/* ============ 单个工具卡片 ============ */
+
+.tool {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px 32px 32px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.tool h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.hint {
+  color: #6e6e73;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.hint code {
+  background: #f0f0f3;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+/* ============ 上传工具表单 ============ */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #424245;
+}
+
+.form label > span {
+  color: #424245;
+}
+
+.form input[type='text'] {
+  padding: 9px 12px;
+  border: 1px solid #d2d2d7;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  background: white;
+  transition: border-color 0.15s;
+}
+
+.form input[type='text']:focus {
+  outline: none;
+  border-color: #0071e3;
+}
+
+.form input[type='file'] {
+  font-size: 14px;
+}
+
+.form textarea {
+  padding: 9px 12px;
+  border: 1px solid #d2d2d7;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+  background: white;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+
+.form textarea:focus {
+  outline: none;
+  border-color: #0071e3;
+}
+
+.sep {
+  border: none;
+  border-top: 1px solid #e5e5ea;
+  margin: 8px 0;
+}
+
+.cookie-msg {
+  margin-top: -8px;
+  font-size: 12px;
+  color: #34c759;
+}
+
+.file-info {
+  font-size: 12px;
+  color: #424245;
+  background: #f0f0f3;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: -6px;
+}
+
+.form button {
+  margin-top: 4px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #0071e3;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form button:hover:not(:disabled) {
+  background: #005bb5;
+}
+
+.form button:disabled {
+  background: #d2d2d7;
+  cursor: not-allowed;
+}
+
+.form button.ghost {
+  background: transparent;
+  color: #0071e3;
+  border: 1px solid #d2d2d7;
+  margin-top: -8px;
+}
+
+.form button.ghost:hover:not(:disabled) {
+  background: #f0f0f3;
+  border-color: #0071e3;
+}
+
+.progress {
+  position: relative;
+  margin-top: 24px;
+  height: 24px;
+  background: #f0f0f3;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #0071e3, #34c759);
+  transition: width 0.2s ease-out;
+}
+
+.progress-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: #1d1d1f;
+  mix-blend-mode: difference;
+}
+
+.timings {
+  margin-top: 24px;
+  padding: 14px 18px;
+  background: #f5f5f7;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.timings > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.timings .label {
+  color: #6e6e73;
+}
+
+.timings .value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.timings .total {
+  border-top: 1px solid #e5e5ea;
+  margin-top: 6px;
+  padding-top: 10px;
+  font-weight: 600;
+}
+
+.timings .total .label,
+.timings .total .value {
+  color: #1d1d1f;
+  font-size: 14px;
+}
+
+.timings .muted {
+  margin-top: 6px;
+  color: #6e6e73;
+  font-size: 12px;
+  text-align: right;
+}
+
+.error {
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: #fff1f0;
+  border: 1px solid #ffccc7;
+  border-radius: 6px;
+  color: #cf1322;
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.result {
+  margin-top: 24px;
+}
+
+.result h3 {
+  font-size: 14px;
+  margin: 0 0 8px;
+  color: #424245;
+}
+
+.result pre {
+  margin: 0;
+  padding: 16px 18px;
+  background: #1d1d1f;
+  color: #f5f5f7;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-x: auto;
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+/* ============ Snowflake 工具: 两列文本框 ============ */
+
+.snowflake-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.snowflake-cols label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #424245;
+}
+
+.snowflake-cols textarea {
+  padding: 12px;
+  border: 1px solid #d2d2d7;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+  line-height: 1.6;
+  background: white;
+  resize: vertical;
+  min-height: 320px;
+  transition: border-color 0.15s;
+}
+
+.snowflake-cols textarea:focus {
+  outline: none;
+  border-color: #0071e3;
+}
+
+@media (max-width: 720px) {
+  .snowflake-cols {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    width: 200px;
+    flex-basis: 200px;
+  }
+}

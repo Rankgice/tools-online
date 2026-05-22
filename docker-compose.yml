@@ -1,0 +1,30 @@
+# 本地部署用. 直接 `docker compose up -d` 起服务.
+#
+# 使用前:
+#   1. 把 API_UPSTREAM 改成你 portal 后端的可达地址 (本机/容器内/远程都行).
+#   2. 如果 portal 也跑在同一台 docker 上, 用容器名 (例如 http://portal:8899) 即可.
+#   3. 如果直接连远程, 用 https://ecs.yuansuan.work 这种完整 URL.
+
+services:
+  tools-online:
+    image: tools-online:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tools-online
+    restart: unless-stopped
+    ports:
+      - "8080:80"        # 宿主机 8080 -> 容器 80; 改成你想用的端口
+    environment:
+      # 后端 /api/* 反代目标. 本机 portal 用 http://host.docker.internal:18000
+      # (mac/windows docker desktop 内置), 或换成你后端的可达地址
+      API_UPSTREAM: "http://host.docker.internal:18000"
+    extra_hosts:
+      # Linux 上需要这一行才能让容器里访问宿主机
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O- http://127.0.0.1/healthz || exit 1"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

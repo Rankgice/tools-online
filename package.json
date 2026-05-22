@@ -1,0 +1,23 @@
+{
+  "name": "demo-react-upload",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Minimal React demo for POST /api/v1/project-models/upload (octet-stream stream upload)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.10"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
