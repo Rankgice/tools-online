@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import MarkdownTool from './tools/MarkdownTool.jsx'
 import SnowflakeTool from './tools/SnowflakeTool.jsx'
 import UploadTool from './tools/UploadTool.jsx'
 
@@ -16,6 +17,12 @@ const TOOLS = [
     name: 'Snowflake ID 互转',
     description: 'Base58 ↔ Int64',
     component: SnowflakeTool,
+  },
+  {
+    id: 'markdown',
+    name: 'Markdown 解析',
+    description: '粘贴源码 → 实时渲染',
+    component: MarkdownTool,
   },
 ]
 

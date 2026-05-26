@@ -7,18 +7,18 @@
 
 services:
   tools-online:
-    image: tools-online:local
+    image: ghcr.io/rankgice/tools-online:latest
     build:
       context: .
       dockerfile: Dockerfile
     container_name: tools-online
     restart: unless-stopped
     ports:
-      - "8080:80"        # 宿主机 8080 -> 容器 80; 改成你想用的端口
+      - "8777:80"        # 宿主机 8080 -> 容器 80; 改成你想用的端口
     environment:
       # 后端 /api/* 反代目标. 本机 portal 用 http://host.docker.internal:18000
       # (mac/windows docker desktop 内置), 或换成你后端的可达地址
-      API_UPSTREAM: "http://host.docker.internal:18000"
+      API_UPSTREAM: "https://ecs.yuansuan.work/"
     extra_hosts:
       # Linux 上需要这一行才能让容器里访问宿主机
       - "host.docker.internal:host-gateway"

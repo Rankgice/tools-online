@@ -389,3 +389,231 @@ body {
     flex-basis: 200px;
   }
 }
+
+/* ============ Markdown 工具 ============ */
+
+.markdown-tool .toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.markdown-tool .toolbar .spacer {
+  flex: 1;
+}
+
+.markdown-tool .toolbar button {
+  padding: 6px 14px;
+  border: 1px solid #d2d2d7;
+  border-radius: 6px;
+  background: white;
+  color: #424245;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.markdown-tool .toolbar button:hover:not(:disabled) {
+  background: #f0f0f3;
+  border-color: #0071e3;
+}
+
+.markdown-tool .toolbar button:disabled {
+  color: #b7b7bd;
+  cursor: not-allowed;
+}
+
+.markdown-tool .toolbar button.ghost {
+  /* 跟其它按钮一致, 没单独样式; 保留 className 钩子 */
+}
+
+/* segmented control: 并排 / 纯渲染 */
+.markdown-tool .seg {
+  display: inline-flex;
+  border: 1px solid #d2d2d7;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.markdown-tool .seg-item {
+  padding: 6px 14px;
+  border: none;
+  background: white;
+  color: #424245;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 0 !important;
+}
+
+.markdown-tool .seg-item:hover:not(.active) {
+  background: #f0f0f3;
+}
+
+.markdown-tool .seg-item.active {
+  background: #0071e3;
+  color: white;
+}
+
+.markdown-tool .flash {
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.markdown-tool .flash.ok {
+  color: #34c759;
+}
+
+.markdown-tool .flash.err {
+  color: #cf1322;
+}
+
+.markdown-tool .panes-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.markdown-tool .panes-preview {
+  display: block;
+}
+
+.markdown-tool .pane-source {
+  display: flex;
+  flex-direction: column;
+}
+
+.markdown-tool textarea {
+  width: 100%;
+  min-height: 560px;
+  padding: 12px;
+  font: 13px/1.6 'SFMono-Regular', Menlo, Consolas, monospace;
+  border: 1px solid #d2d2d7;
+  border-radius: 6px;
+  background: white;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+
+.markdown-tool textarea:focus {
+  outline: none;
+  border-color: #0071e3;
+}
+
+.markdown-tool .stats {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #6e6e73;
+}
+
+.markdown-tool .md-preview {
+  min-height: 560px;
+  padding: 16px 22px;
+  background: white;
+  border: 1px solid #e5e5ea;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.75;
+  overflow: auto;
+}
+
+.markdown-tool .md-preview h1,
+.markdown-tool .md-preview h2,
+.markdown-tool .md-preview h3 {
+  margin: 22px 0 10px;
+}
+
+.markdown-tool .md-preview h1 { font-size: 22px; }
+.markdown-tool .md-preview h2 {
+  font-size: 18px;
+  padding-top: 8px;
+  border-top: 1px solid #e5e5ea;
+}
+.markdown-tool .md-preview h3 { font-size: 15px; color: #424245; }
+
+.markdown-tool .md-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 13px;
+}
+
+.markdown-tool .md-preview th,
+.markdown-tool .md-preview td {
+  padding: 8px 12px;
+  border: 1px solid #e5e5ea;
+  text-align: left;
+  vertical-align: top;
+}
+
+.markdown-tool .md-preview th {
+  background: #f5f5f7;
+  font-weight: 600;
+}
+
+.markdown-tool .md-preview code {
+  background: #f0f0f3;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+.markdown-tool .md-preview pre {
+  margin: 12px 0;
+  padding: 14px 16px;
+  background: #1d1d1f;
+  color: #f5f5f7;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.55;
+  overflow-x: auto;
+}
+
+.markdown-tool .md-preview pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.markdown-tool .md-preview details {
+  margin: 8px 0;
+  padding: 8px 12px;
+  background: #fbfbfd;
+  border: 1px solid #e5e5ea;
+  border-radius: 6px;
+}
+
+.markdown-tool .md-preview details summary {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+  color: #424245;
+}
+
+.markdown-tool .md-preview ul,
+.markdown-tool .md-preview ol {
+  padding-left: 22px;
+}
+
+.markdown-tool .md-preview hr {
+  border: none;
+  border-top: 1px solid #e5e5ea;
+  margin: 20px 0;
+}
+
+.markdown-tool .md-preview blockquote {
+  margin: 12px 0;
+  padding: 6px 14px;
+  border-left: 3px solid #0071e3;
+  background: #f5f5f7;
+  color: #424245;
+}
+
+@media (max-width: 880px) {
+  .markdown-tool .panes-split {
+    grid-template-columns: 1fr;
+  }
+}
