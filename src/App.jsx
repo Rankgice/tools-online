@@ -28,30 +28,37 @@ const TOOLS = [
 
 export default function App() {
   const [activeId, setActiveId] = useState(TOOLS[0].id)
-  const active = TOOLS.find((t) => t.id === activeId)
-  const Active = active?.component
 
   return (
     <div className="layout">
       <aside className="sidebar">
         <h1 className="brand">🧰 工具箱</h1>
         <ul className="tool-list">
-          {TOOLS.map((t) => (
-            <li key={t.id}>
+          {TOOLS.map((tool) => (
+            <li key={tool.id}>
               <button
                 type="button"
-                className={t.id === activeId ? 'tool-item active' : 'tool-item'}
-                onClick={() => setActiveId(t.id)}
+                className={tool.id === activeId ? 'tool-item active' : 'tool-item'}
+                onClick={() => setActiveId(tool.id)}
               >
-                <div className="tool-item-name">{t.name}</div>
-                <div className="tool-item-desc">{t.description}</div>
+                <div className="tool-item-name">{tool.name}</div>
+                <div className="tool-item-desc">{tool.description}</div>
               </button>
             </li>
           ))}
         </ul>
       </aside>
       <main className="content">
-        {Active ? <Active /> : <div className="empty">未选择工具</div>}
+        {TOOLS.map((tool) => {
+          const Tool = tool.component
+          const isActive = tool.id === activeId
+
+          return (
+            <section key={tool.id} aria-hidden={!isActive} hidden={!isActive}>
+              <Tool />
+            </section>
+          )
+        })}
       </main>
     </div>
   )
