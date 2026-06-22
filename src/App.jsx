@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import JsonTool from './tools/JsonTool.jsx'
 import MarkdownTool from './tools/MarkdownTool.jsx'
 import SnowflakeTool from './tools/SnowflakeTool.jsx'
 import UploadTool from './tools/UploadTool.jsx'
@@ -23,6 +24,12 @@ const TOOLS = [
     name: 'Markdown 解析',
     description: '粘贴源码 → 实时渲染',
     component: MarkdownTool,
+  },
+  {
+    id: 'json',
+    name: 'JSON 视图',
+    description: '转义 / 反转义 / 格式化',
+    component: JsonTool,
   },
 ]
 
